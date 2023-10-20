@@ -379,4 +379,126 @@ Rendered result
 
 Functions starting with `use` are called **Hooks**.
 
-<!-- TODO: Complete 'Using Hooks' and 'Sharing data between components' -->
+`useState`, a React Hook that was used in the previous "Rendering the Same Component Multiple Times" example is a Hook that is **built-in** to React. There's also the potential to write **custom Hooks** by combining the existing ones. 
+
+🔗 [Built-In Hooks API Reference](https://react.dev/reference/react)
+
+Hooks are **more restrictive** than other functions. They can only be called at **the top of a React component or other Hooks**. If `useState` was going to be used in a condition or a loop, a new component would need to be extracted and the `useState` Hook can be put there.
+
+## Sharing Data Between Components
+
+🔗[Source](https://react.dev/learn#sharing-data-between-components)
+
+
+In the previous `MyButton` example, each component had its own independent `count`. When each button was clicked, only the count for the button clicked changed. 
+
+![components with separate data visual example](resources/react-components-separate-data.png)
+
+In order to share the data between components, so that the data can be updated together, the **state** would need to be moved "upwards" to the closest component containing all of them. 
+
+![components with shared data visual example](resources/react-components-shared-data.png)
+
+With the **state** configured this way, when either button is clicked, the count will change for both. 
+
+### Example: Update `MyButton` to Share Data Between Components
+
+Here the **state** is moved up from `MyButton` to `MyApp`
+
+```tsx
+export default function MyApp() {
+    const [count, setCount] = useState(0);
+
+    function handleClick() {
+        setCount(count + 1);
+    }
+
+    return (
+        <div>
+            <h1>Counters that update separately</h1>
+            <MyButton />
+            <MyButton />
+        </div>
+    );
+}
+
+function MyButton() {
+  // ... we're moving code from here ...
+}
+```
+
+Then, the **state** is passed **down** from `MyApp` to each `MyButton`. This can be accomplished by using the JSX curly braces `{}`, just like what was previously done with the built-in tags like `<img>`
+
+```tsx
+export default function MyApp() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>Counters that update together</h1>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
+}
+```
+
+When information is passed down like this, it's called **props**.
+
+Now the `MyApp` component contains the `count` **state** and the `handleClick` **event handler**, and passes **both** as **props** to each of the buttons. 
+
+`MyButton` is updated to **read** the props that are passed from its parent component.
+
+```tsx
+function MyButton({ count, onClick }) {
+    return (
+        <button onClick={onClick}>
+            Clicked {count} times
+        </button>
+  );
+}
+```
+
+- `onClick` **handler** fires when the button is clicked
+- Each button's `onClick` **prop** is set to the `handleClick` function inside `MyApp`
+- `setCount(count + 1)` increments the `count` state variable
+- The updated `count` **prop** is passed to each button, so that all show the updated value
+
+This is called: **lifting state up**
+
+Complete Implementation ⬇️
+
+```tsx
+import { useState } from 'react';
+
+export default function MyApp() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>Counters that update together</h1>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
+}
+
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+```
+
+Rendered Result ⬇️
+
+![rendered component shared data example](resources/react-rendered-component-shared-data-example.gif)
