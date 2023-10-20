@@ -50,7 +50,7 @@ export default function MyApp() {
 
 `export default` indicates that this is the main component in the file. 
 
-⬇️ **Example Result** ⬇️
+Rendered Result ⬇️
 
 ![example result](resources/react-mybutton-example-result.png)
 
@@ -140,9 +140,9 @@ export default function Profile() {
 }
 ```
 
-⬇️ **️Example Result** ⬇️
+Rendered Result ⬇️
 
-![Object Inside style result](/docs/resources/react-object-inside-style-result.png)
+![Object Inside style result](resources/react-object-inside-style-example-result.png)
 
 ## Conditional Rendering
 
@@ -257,7 +257,7 @@ export default function ShoppingList() {
 }
 ```
 
-Rendered result
+Rendered result ⬇️
 
 ![rendered list of products](resources/react-rendered-list-example-result.png)
 
@@ -369,7 +369,7 @@ function MyButton() {
 }
 ```
 
-Rendered result 
+Rendered result ⬇️
 
 ![rendered multiple component state example](resources/react-rendered-state-example-result.gif)
 
