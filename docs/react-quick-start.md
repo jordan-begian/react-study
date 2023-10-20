@@ -9,8 +9,8 @@
 - [How to add markup and styles](#adding-styles)
 - [How to display data](#displaying-data)
 - [How to render conditions and lists](#conditional-rendering)
-- [How to respond to events and update the screen]()
-- [How to share data between components]()
+- [How to respond to events and update the screen](#responding-to-events)
+- [How to share data between components](#sharing-data-between-components)
 
 ## Creating & Nesting Components
 
