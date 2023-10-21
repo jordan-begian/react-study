@@ -4,7 +4,7 @@ function Square() {
     const [value, setValue] = useState();
 
     function handleClick() {
-        console.log('clicked!');
+        setValue('X');
     }
 
     return (
