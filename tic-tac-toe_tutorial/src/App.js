@@ -34,7 +34,11 @@ export default function Game() {
     return (
         <div className="game">
             <div className="game-board">
-                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+                <Board
+                    xIsNext={xIsNext}
+                    squares={currentSquares}
+                    onPlay={handlePlay}
+                />
             </div>
             <div className="game-info">
                 <ol>{moves}</ol>
@@ -60,11 +64,11 @@ function Board({ xIsNext, squares, onPlay }) {
     }
 
     const winner = calculateWinner(squares);
-    let status; 
+    let status;
     if (winner) {
         status = `Winner: ${winner}`;
     } else {
-        status = `Next Player: ${xIsNext ? "X" : "O"}`
+        status = `Next Player: ${xIsNext ? "X" : "O"}`;
     }
 
     return (
