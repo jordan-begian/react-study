@@ -44,11 +44,11 @@ export default function Board() {
                 />
                 <Square
                     value={squares[4]}
-                    onSquareClick={ () => handleClick(4)}
+                    onSquareClick={() => handleClick(4)}
                 />
                 <Square
                     value={squares[5]}
-                    onSquareClick={ () => handleClick(5)}
+                    onSquareClick={() => handleClick(5)}
                 />
             </div>
 
@@ -72,10 +72,7 @@ export default function Board() {
 
 function Square({ value, onSquareClick }) {
     return (
-        <button
-            className="square"
-            onClick={onSquareClick}
-        >
+        <button className="square" onClick={onSquareClick}>
             {value}
         </button>
     );
